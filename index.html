@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reset-css@5.0.1/reset.min.css"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css"/>
+  <style>
+  body {
+    font-size: 14px;
+    line-height: 1;
+  }
+
+main{
+  min-height: 100%;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  background-color: #ffffff;
+}
+header{
+  padding: 20px 0 10px;
+  background-color: #4158d0;
+  background-image: linear-gradient(
+    43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
+}
+header ul{ margin: 0 10px; color: #fff; }
+header .profile img{ width: 40px; height: 40px; border-radius: 50%;}
+header .profile div{ line-height: 40px; margin-left: 10px; font-size: 16px;}
+header .diff_day { line-height: 40px; }
+
+
+footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+footer ul{
+  border-top: 1px solid #a1a1a1;
+  background-color: #4158d0;
+  background-image: linear-gradient(
+    43deg,
+    #4158d0 0%,
+    #c850c0 46%,
+    #ffcc70 100%
+  );
+}
+footer ul li{
+  float: left;
+  width: calc( 25% - 1px);
+  line-height: 50px;
+  text-align: center;
+  border-right: 1px solid #a1a1a1;
+  font-size: 26px;
+}
+footer ul li a{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+footer ul li i{
+  color: #fff;
+}
+footer ul li:last-child{
+  border-right: 0px;
+}
+
+footer ul li:last-child i{
+  animation: heartbeat 2s linear infinite;
+}
+
+@keyframes heartbeat {
+  0% { transform:  scale(1); }
+  25% { transform:  scale(1); }
+  30% { transform:  scale(1.4); }
+  50% { transform:  scale(1.2); }
+  70% { transform:  scale(1.4); }
+  90% { transform:  scale(1); }
+  100% { transform:  scale(1); }
+}
+
+.float_clear:after{
+  clear: both;
+  content: "";
+  display: block;
+}
+.float_left{
+  float: left;
+}
+.float_right{
+  float: right;
+}
+
+img{
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+content{
+  position: relative;
+}
+
+content ul{
+  margin: 0 10px;
+}
+
+content ul li{
+  float: left;
+  width: 50%;
+}
+
+content .notice_wrapper{
+  background-color: #000000;
+  opacity: 0.6;
+  width: 80%;
+  position: absolute;
+  z-index: 999999;
+  color: #fff;
+  font-size: 15px;
+  text-align: center;
+  margin: 57px 7px;
+  border-radius: 6px;
+  right: 0;
+  box-shadow: 5px 5px 5px #976363;
+}
+
+content .notice_wrapper .notice_inner_wrapper{
+  margin: 40px 0;
+}
+
+.swiper {
+  min-height: 300px;
+}
+
+.img_thumb_wrapper{ display: block; position: relative; width: 100%; }
+.img_thumb_wrapper .img_thumb{ overflow: hidden;
+    position: relative;
+    z-index: 1;
+    left: 0;
+    padding-top: 100%;
+    border-radius: 4px;
+    background: #ebebeb no-repeat 50% 50%;
+    background-size: 60px 60px;}
+.img_thumb_wrapper .img_thumb .frame{ position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    -webkit-transform: translate(50%, 50%);
+    -ms-transform: translate(50%, 50%);
+    transform: translate(50%, 50%);}
+.img_thumb_wrapper .img_thumb .frame img{
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  border-radius: 4px;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.card_header{
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 20px 0 0;
+  font-size: 20px;
+}
+.card_header span{
+  font-weight: bold;
+}
+
+.card_body {
+  margin: 20px;
+}
+.card_body dl{
+  margin: 0 0 5px;
+  font-size: 24px;
+}
+.card_body dl dt{
+  margin: 0 10px 0 0;
+}
+
+.hide{
+  display: none !important;
+}
+
+.btn_close{
+  position: absolute;
+  right: 7px;
+  font-size: 30px;
+}
+</style>
+  
+</head>
+<body>
+  <main class="main_wrapper">
+    <header>
+      <ul class="float_clear">
+        <li class="profile" id="name">
+          <img src="./assets/img/1.jpeg" class="float_left"/>
+          <div class="float_left">정수아</div>
+        </li>
+        <li class="diff_day float_right" id="diffDay"></li>
+      </ul>
+    </header>
+    <content>
+      <div class="notice_wrapper" id="notice">
+        <i class="fa-solid fa-xmark btn_close" id="btnCloseNotice"></i>
+        <div class="notice_inner_wrapper">
+          <p>10-23(일) 오후 3시00분에 수아 생일파티가 있어요!</p><br/>
+          <p>하단의 <i class="fa-solid fa-cake-candles"></i>(케익 아이콘)을 눌러주세요!</p>
+        </div>
+      </div>
+      <div class="swiper" id="swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><div class="img_thumb_wrapper "><div class="img_thumb"><div class="frame"><img src="./assets/img/1.jpeg"/></div></div></div></div>
+          <div class="swiper-slide"><div class="img_thumb_wrapper "><div class="img_thumb"><div class="frame"><img src="./assets/img/2.jpeg"/></div></div></div></div>
+          <div class="swiper-slide"><div class="img_thumb_wrapper "><div class="img_thumb"><div class="frame"><img src="./assets/img/3.jpeg"/></div></div></div></div>
+          <div class="swiper-slide"><div class="img_thumb_wrapper "><div class="img_thumb"><div class="frame"><img src="./assets/img/4.jpeg"/></div></div></div></div>
+          <div class="swiper-slide"><div class="img_thumb_wrapper "><div class="img_thumb"><div class="frame"><img src="./assets/img/5.jpeg"/></div></div></div></div>
+          <div class="swiper-slide"><div class="img_thumb_wrapper "><div class="img_thumb"><div class="frame"><img src="./assets/img/6.jpeg"/></div></div></div></div>
+          <div class="swiper-slide"><div class="img_thumb_wrapper "><div class="img_thumb"><div class="frame"><img src="./assets/img/7.jpeg"/></div></div></div></div>
+          <div class="swiper-slide"><div class="img_thumb_wrapper "><div class="img_thumb"><div class="frame"><img src="./assets/img/8.jpeg"/></div></div></div></div>
+          <div class="swiper-slide"><div class="img_thumb_wrapper "><div class="img_thumb"><div class="frame"><img src="./assets/img/9.jpeg"/></div></div></div></div>
+          <div class="swiper-slide"><div class="img_thumb_wrapper "><div class="img_thumb"><div class="frame"><img src="./assets/img/10.jpeg"/></div></div></div></div>
+        </div>
+        <div class="swiper-pagination"></div>
+      </div>
+
+      <div class="card_wrapper">
+        <div class="card">
+          <div class="card_header">
+            <div>
+              수아가 태어난지 <span id="diffDayText">-</span> 되었어요!!!
+            </div>
+          </div>
+          <div class="card_body">
+            <dl class="float_clear">
+              <dt class="float_left">이름</dt>
+              <dd class="float_right">정수아</dd>
+            </dl>
+
+            <dl class="float_clear">
+              <dt class="float_left">생년월일</dt>
+              <dd class="float_right">2021년 10월29일</dd>
+            </dl>
+
+            <!-- <dl>
+              <dt>아빠 : 정민수</dt>
+              <dd><a href="tel:010-3299-3963"><img src="./images/sample/btn_fa.png" width="100%" alt="아빠에게 전화걸기"></a></dd>
+            </dl>
+
+            <dl>
+              <dt>엄마 : 오수연</dt>
+              <dd><a href="tel:010-4617-5532"><img src="./images/sample/btn_mo.png" width="100%" alt="엄마에게 전화걸기"></a></dd>
+            </dl> -->
+          </div>
+        </div>
+      </div>
+    </content>
+    <footer>
+      <ul class="float_clear">
+        <li><a href="https://www.facebook.com/cheongminsoo" target="_blank"><i class="fa-brands fa-instagram"></i></a></li>
+        <li><a href="https://www.instargram.com/minsoocheong" target="_blank"><i class="fa-brands fa-facebook"></i></a></li>
+        <li><a href="tel:01032993963"><i class="fa-solid fa-phone"></i></a></li>
+        <li><a href="birthday.html"><i class="fa-solid fa-cake-candles"></i></a></li>
+      </ul>
+    </footer>
+  </main>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+
+  <script>
+    function secondsToDhms(seconds) {
+      seconds = Number(seconds);
+      var d = Math.floor(seconds / (3600*24));
+      var h = Math.floor(seconds % (3600*24) / 3600);
+      var m = Math.floor(seconds % 3600 / 60);
+      var s = Math.floor(seconds % 60);
+
+      var dDisplay = d > 0 ? d + (d == 1 ? "일 " : "일 ") : "";
+      var hDisplay = h > 0 ? h + (h == 1 ? "시간 " : "시간 ") : "";
+      var mDisplay = m > 0 ? m + (m == 1 ? "분 " : "분 ") : "";
+      var sDisplay = s > 0 ? s + (s == 1 ? "초" : "초") : "";
+      return dDisplay + hDisplay + mDisplay + sDisplay;
+    }
+
+    function User(){
+      this.data = {
+        today : moment(),
+        birthday: moment('2021-10-29 01:39:00'),
+        formatDay: 60*60*24
+      }
+
+      this.swiper = new Swiper('#swiper', {
+        autoHeight: true, 
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      })
+    }
+
+    User.prototype.setEvent = function(){
+
+    }
+
+    User.prototype.setValue = function(){
+      $('#diffDay').text('...');
+
+      $('#notice').removeClass('hide')
+    }
+
+
+    User.prototype.wathch = function(){
+      setInterval(function(){
+        const seconds = moment.duration(moment().diff($user.data.birthday)).asSeconds();
+        $('#diffDay').text(secondsToDhms(seconds))
+        $('#diffDayText').text(secondsToDhms(seconds))
+      },1000)
+    }
+
+    $(document).ready(function() {
+      $user = new User();
+      $user.wathch();
+    });
+  </script>
+</body>
+</html>
